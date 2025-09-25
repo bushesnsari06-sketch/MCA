@@ -1,0 +1,67 @@
+import java.util.*;
+
+class Main{
+  public static void main(String[] args){
+    Queue queueobj = new Queue(5);
+    queueobj.enqueue(5);
+    queueobj.enqueue(4);
+    queueobj.enqueue(3);
+    queueobj.enqueue(2);
+    queueobj.display();
+    queueobj.dequeue();
+     queueobj.display();
+  }
+}
+
+class Queue{
+  int front;
+  int rear;
+  int[] arqueue;
+  int capacity;
+  
+  Queue(int n){
+    capacity = n;
+    arqueue = new int[capacity];
+    front = 0;
+    rear = -1;
+  }
+  
+  void enqueue(int element){
+    if(isfull()){
+      System.out.println("Queue is  Full");
+    }
+    else{
+      arqueue[++rear] = element;
+      System.out.println(element + " enqueued");
+    }
+  }
+  
+  int dequeue(){
+    if(isEmpty()){
+      return -1;
+    }
+    else{
+      int element = arqueue[front++];
+      System.out.println("Dequeued Element " + element);
+      return element;
+    }
+  }
+  void display(){
+    if(isEmpty()){
+      System.out.println("Queue is  Empty");
+    }
+    else{
+      for(int i = front; i <= rear ; i++){
+        System.out.print(arqueue[i] + " ");
+      }
+      System.out.println();
+    }
+  }
+  boolean isfull(){
+    return rear == capacity - 1;
+  }
+  
+boolean isEmpty(){
+  return front > rear;
+}
+}
