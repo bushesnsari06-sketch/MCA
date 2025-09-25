@@ -1,0 +1,69 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Stack stackobj = new Stack(5);
+      stackobj.push(4);
+      stackobj.push(11);
+      stackobj.push(1);
+      stackobj.push(7);
+      stackobj.push(10);
+     // System.out.println(stackobj.arstack);
+      stackobj.pop();
+      stackobj.peek();
+      System.out.println(stackobj.size);
+  }
+}
+
+public class Stack{
+  int capacity;
+  int top;
+  int size;
+  int[] arStack;
+  
+  //Constructer
+public Stack(int n){
+  capacity = n;
+  size = 0;
+  top = -1;
+  arStack = new int[capacity];
+ }
+ 
+ boolean isfull(){
+   return top == capacity - 1;
+   }
+ 
+ boolean isEmpty(){
+   return top == -1;
+ }
+ public void push(int element){
+   if(isfull()){
+     System.out.println("Stack is full: it reached beyond limit");
+   }
+   else{
+     arStack[++top]= element;
+     size = size + 1;
+   }
+ }
+ public int pop(){
+   if(isEmpty()){
+     System.out.println("Stack is empty");
+     return -1;
+   }
+   else{
+     int element = arStack[top--];
+     System.out.println("Popped element is:"+element);
+     return element;
+   }
+ }
+ public int peek(){
+   if(isfull()){
+     System.out.println("Stack is full: it reached beyond limit");
+     return -1;
+   }
+   else{
+     return arStack[top];
+   }
+  }
+}
+ 
