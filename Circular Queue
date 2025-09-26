@@ -1,0 +1,74 @@
+class Main {
+    public static void main(String[] args) {
+       Queue cir = new Queue(5);
+       cir.enQueue(13);
+       cir.enQueue(17);
+       cir.enQueue(14);
+       cir.enQueue(15);
+       cir.enQueue(16);
+       cir.display();
+       cir.dequeue();
+       cir.display();
+    }
+}
+class Queue{
+    int front ;
+    int rear ;
+    int size ;
+    int[] cirQueue;
+    
+Queue(int n){
+    size = n;
+    cirQueue = new int[n];
+    front = -1;
+    rear = -1;
+ }
+ void enQueue(int element){
+     if((rear+1) % size == front){
+         System.out.println("Queue is full");
+     }
+     if(front == -1){        //putting single element in circular queue
+         front = 0;
+     }
+     rear = (rear +1) % size;
+     cirQueue[rear] = element;
+     System.out.println(element + " enqueued");
+ }
+ 
+ int dequeue(){
+     if(front == -1){
+         System.out.println("Queue is Empty");
+     }
+     int result = cirQueue[front];
+     //only one element left so dequee that also
+     if(front == rear){
+         front = -1;
+         rear = -1;
+     }
+     //circulate the front to dequeue
+     else{
+        front = (front+1) % size ;
+     }
+     System.out.println("Dequeued element " + result);
+     return result;
+ }
+ void display(){
+     if(front == -1 && rear ==-1){
+         System.out.println("No Queue exists");
+     }
+     else{
+         System.out.print("Queue ");
+         int i = front;
+         while(true){
+             System.out.print(cirQueue[i] + " ");
+             if(i == rear){
+                 break;
+             }
+             i = (i+1) % size;
+         }
+             
+         
+         System.out.println();
+     }
+ }
+}
